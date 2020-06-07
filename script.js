@@ -1,7 +1,8 @@
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-
+const MINYEAR = 2010;
+const MAXYEAR = new Date().getFullYear();
 var currentYear = new Date().getFullYear();
 var currentMonth = { value :new Date().toLocaleString('default', { month: 'long' }), id:new Date().getMonth()};
 
@@ -54,18 +55,52 @@ function populateCalendar(){
 	calendarDays = document.querySelectorAll('.week.dates>.day>p');
 	startDay = new Date(currentYear,(currentMonth.id)).getDay();
 	for(let i = 0; i < totalDays;i++){
-		if( i < startDay){
-			continue;
-		}
-		calendarDays[i].innerText = (i+1)-startDay;
+		calendarDays[i+startDay].innerText = (i+1);
 	}
 }
 
-function monthChange(){
+function monthChange(value){
 	monthControl = document.querySelector('#month');
+	if (value){
+		if(value == 'right'){
+			newMonth =  monthControl.selectedIndex + 1;
+			monthControl.selectedIndex = newMonth == 12 ? 0 : newMonth ;
+			if (newMonth == 12) {
+				monthControl.selectedIndex = 0;
+				yearChange(currentYear +1);
+			}
+			else{
+				monthControl.selectedIndex = newMonth ;
+			}
+		}
+		else if(value == 'left'){
+			newMonth = monthControl.selectedIndex - 1;
+			if (newMonth == -1) {
+				monthControl.selectedIndex =  11;
+				yearChange(currentYear -1);	
+			}
+			else{
+				monthControl.selectedIndex = newMonth;
+			}
+
+		}
+
+	}
 	currentMonth = { value : monthNames[monthControl.selectedIndex], id:monthControl.selectedIndex};
 	populateCalendar();
 }
+
+function yearChange(value){
+	yearControl = document.querySelector('#year');
+	if(value){
+		value = value > MAXYEAR ? MAXYEAR: value;
+		value = value < MINYEAR ? MINYEAR : value;
+		yearControl.selectedIndex = value - MINYEAR; 
+	}
+	currentYear = new Date(yearControl.selectedIndex + MINYEAR).getFullYear();
+	populateCalendar();
+}
+
 populateCalendar();
 calendarControls();
 displayDayNames();
