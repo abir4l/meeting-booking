@@ -1,0 +1,26 @@
+.calendar{
+	border: 1px solid black;
+}
+
+.week{
+	display: flex;
+	justify-content: space-around;
+}
+.week-container{
+	border-bottom: 1px solid black;
+
+}
+.week-container:last-child{
+	border-bottom:none;
+}
+
+.day{
+	border-right: 1px solid black;
+	width:14%;
+  height:100px;
+  padding:10px;
+}
+
+.day:last-child{
+	border-right: none;
+}

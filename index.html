@@ -3,12 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Calendar</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	
+	<div class="controls">
+		<select name="currentYear" id="year">
+			
+		</select>
+		<select  id="month" onchange="monthChange()">
+			
+		</select>
+		
+	</div>
 	<div class="calendar">
 		<div class="week-container">
-			<div class="week">
+			<div class="week days">
 				<div class="day">
 					<p></p>
 				</div>
@@ -33,7 +42,7 @@
 			</div>
 		</div>
 		<div class="week-container">
-			<div class="week">
+			<div class="week dates">
 				<div class="day">
 					<p></p>
 				</div>
@@ -58,7 +67,7 @@
 			</div>
 		</div>
 		<div class="week-container">
-			<div class="week">
+			<div class="week dates">
 				<div class="day">
 					<p></p>
 				</div>
@@ -83,7 +92,7 @@
 			</div>
 		</div>
 		<div class="week-container">
-			<div class="week">
+			<div class="week dates">
 				<div class="day">
 					<p></p>
 				</div>
@@ -108,7 +117,32 @@
 			</div>
 		</div>
 		<div class="week-container">
-			<div class="week">
+			<div class="week dates">
+				<div class="day">
+					<p></p>
+				</div>
+				<div class="day">
+					<p></p>
+				</div>
+				<div class="day">
+					<p></p>
+				</div>
+				<div class="day">
+					<p></p>
+				</div>
+				<div class="day">
+					<p></p>
+				</div>
+				<div class="day">
+					<p></p>
+				</div>
+				<div class="day">
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<div class="week-container">
+			<div class="week dates">
 				<div class="day">
 					<p></p>
 				</div>
@@ -135,6 +169,6 @@
 	</div>
 
 
-
+<script src="script.js"></script>
 </body>
 </html>
