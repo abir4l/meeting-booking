@@ -212,8 +212,8 @@ function app() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/ammar/code/meeting-booking/assets/js/app.js */"./assets/js/app.js");
-module.exports = __webpack_require__(/*! /home/ammar/code/meeting-booking/assets/scss/app.scss */"./assets/scss/app.scss");
+__webpack_require__(/*! /home/ammar/code/meet-book/meeting-booking/assets/js/app.js */"./assets/js/app.js");
+module.exports = __webpack_require__(/*! /home/ammar/code/meet-book/meeting-booking/assets/scss/app.scss */"./assets/scss/app.scss");
 
 
 /***/ })
