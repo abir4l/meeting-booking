@@ -3,21 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Calendar</title>
-	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/font-awesome/css/all.css">
+	<link rel="stylesheet" href="assets/css/calendar.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
+	<div class="container">
+	
 	<div class="month-view">
-		<div class="controls">
-			<select name="currentYear" id="year" onchange="yearChange()">
+		<div class="controls mb-2 mt-2">
+			<div class="form-inline">
+				<select class="form-control" name="currentYear" id="year" onchange="yearChange()">
 
 			</select>
-			<select  id="month" onchange="monthChange()">
+			<select class="form-control ml-2"  id="month" onchange="monthChange()">
 
 			</select>
-			<span class="fas fa-arrow-left" onclick="monthChange('left')"></span>
+			<span class="fas fa-arrow-left mr-2 ml-4" onclick="monthChange('left')"></span>
 			<span class="fas fa-arrow-right" onclick="monthChange('right')"></span>
+			</div>
+			
 		</div>
 		<div class="calendar">
 			<div class="week-container">
@@ -52,6 +60,9 @@
 	<div class="day-view">
 	<div>
 
+
+	</div>
+	
 
 
 

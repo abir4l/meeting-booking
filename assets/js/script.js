@@ -27,6 +27,7 @@ function resetCaneldar(){
 
 function displayDayNames(){
 	days = [ "sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+	days = days.map( day => day.charAt(0).toUpperCase() + day.substring(1))
 
 	daysOfWeek = document.querySelectorAll('.week.days>.day>p');
 
