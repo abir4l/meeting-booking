@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas test</title>
+	<style>
+		.drawing{
+			border: 1px solid #ccc;
+			position: absolute;
+			top: 150px;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<a href="#" class="clear-canvas"> Clear canvas</a>
+
+	<canvas class="drawing" width="500px" height="500px">
+
+	</canvas>
+
+
+	<script>
+		const canvas = document.querySelector('.drawing');
+
+		document.querySelector('.clear-canvas').addEventListener('click',()=>{
+				const context = canvas.getContext('2d');
+				context.clearRect(0, 0, canvas.width, canvas.height);
+		});
+
+		function getCursorPosition(canvas, event) {
+			const rect = canvas.getBoundingClientRect()
+			const x = event.clientX - rect.left
+			const y = event.clientY - rect.top
+			return {x:x,y:y};
+		}
+
+		function fillCanvas(first,final) {
+			padd = 10;
+			let right = canvas.getBoundingClientRect().right;
+			var ctx = canvas.getContext("2d");
+			if( first.y < final.y){
+				ctx.rect(0,first.y,right - padd,final.y);
+			}
+			else if( first.y > final.y){
+				ctx.rect(0,final.y,right - padd,first.y);
+			}
+			ctx.fill();
+			console.log(firstPosition);
+			finalPosition = null;
+
+
+		}
+
+		let firstPosition, finalPosition,drag = false;
+
+		canvas.addEventListener('mousedown',(ev) =>{
+			drag = true;
+			firstPosition = getCursorPosition(canvas,ev);
+			console.log('mousedown',firstPosition);
+		});
+
+		canvas.addEventListener('mouseup',(ev) =>{
+			drag = false;
+			
+		});
+
+		canvas.addEventListener('mousemove',(ev) =>{
+			
+			if(drag){
+				finalPosition = getCursorPosition(canvas,ev);
+				fillCanvas(firstPosition,finalPosition);
+
+			}
+		});
+
+
+	</script>
+</body>
+</html>

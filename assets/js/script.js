@@ -1,9 +1,9 @@
 const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+"July", "August", "September", "October", "November", "December"
 ];
 
 const weekHtml = '<div class="week-container"><div class="week dates"><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div></div></div>';
-const hourHtml = '<div class="hour"><div class="hour-value"><p>[]</p></div><div class="hour-booking"></div></div>';
+const hourHtml = '<div class="hour"><div class="hour-value"><p>[]</p></div><div class="hour-booking"><canvas class=\'hours-canvas\'></canvas></div></div>';
 
 const MINYEAR = 2010;
 const MAXYEAR = new Date().getFullYear();
@@ -37,10 +37,10 @@ function displayDayNames(){
 }
 
 function calendarControls(){
-	
+
 	yearControl = document.querySelector('#year');
 	monthControl = document.querySelector('#month');
-	
+
 	for (let i = 2010; i <= currentYear; i++) {
 		if(i == currentYear){
 			yearControl.innerHTML += "<option selected >"+i+"</option>";
@@ -62,10 +62,15 @@ function calendarControls(){
 function populateCalendar(){
 	resetCaneldar();
 	totalDays = new Date(currentYear,(currentMonth.id + 1),0).getDate();
+	today = new Date().getDay();
 	calendarDays = document.querySelectorAll('.week.dates>.day>p');
 	startDay = new Date(currentYear,(currentMonth.id)).getDay();
 	for(let i = 0; i < totalDays;i++){
+		if(i+1 == today){
+			calendarDays[i + startDay].classList.add('today');
+		}
 		calendarDays[i+startDay].innerText = (i+1);
+
 	}
 }
 
@@ -125,10 +130,20 @@ function generateHourControls(){
 	let toControl = document.querySelector('#hour-to');
 }
 
+function setupCanvasListener(){
+	document.querySelectorAll('.hours-canvas').forEach(data => {
+		data.addEventListener('drag',(event) =>{
+			console.log('dragger');
+		});
+	});
+
+}
+
 generateCalendarStructure();
 generateHoursOfday();
 populateCalendar();
 calendarControls();
 displayDayNames();
+setupCanvasListener();
 
 
