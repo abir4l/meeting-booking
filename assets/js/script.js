@@ -1,10 +1,22 @@
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
+
+const weekHtml = '<div class="week-container"><div class="week dates"><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div><div class="day"><p></p></div></div></div>';
+const hourHtml = '<div class="hour"><div class="hour-value"><p>[]</p></div><div class="hour-booking"></div></div>';
+
 const MINYEAR = 2010;
 const MAXYEAR = new Date().getFullYear();
 var currentYear = new Date().getFullYear();
 var currentMonth = { value :new Date().toLocaleString('default', { month: 'long' }), id:new Date().getMonth()};
+
+var dayBooking = {year:currentYear,month:currentMonth.id,hours:{}};
+
+function generateCalendarStructure(){
+	let calendarDiv = document.querySelector('.calendar');
+	for(let i =0; i< 6;i++)
+		calendarDiv.innerHTML += weekHtml;
+}
 
 function resetCaneldar(){
 	calendarDays = document.querySelectorAll('.week.dates>.day>p');
@@ -15,6 +27,7 @@ function resetCaneldar(){
 
 function displayDayNames(){
 	days = [ "sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+	days = days.map( day => day.charAt(0).toUpperCase() + day.substring(1))
 
 	daysOfWeek = document.querySelectorAll('.week.days>.day>p');
 
@@ -22,7 +35,6 @@ function displayDayNames(){
 		daysOfWeek[i].innerText = days[i];
 	}
 }
-
 
 function calendarControls(){
 	
@@ -46,8 +58,6 @@ function calendarControls(){
 	}
 
 }
-
-
 
 function populateCalendar(){
 	resetCaneldar();
@@ -101,6 +111,22 @@ function yearChange(value){
 	populateCalendar();
 }
 
+
+function generateHoursOfday(){
+	let hourViewHtml = document.querySelector('.day-view')
+	for(let i = 0;i<24;i++){
+		hourViewHtml.innerHTML += hourHtml.replace('[]',(i+'').padStart(2,'0')+':00');
+	}
+}
+
+
+function generateHourControls(){
+	let fromControl = document.querySelector('#hour-from');
+	let toControl = document.querySelector('#hour-to');
+}
+
+generateCalendarStructure();
+generateHoursOfday();
 populateCalendar();
 calendarControls();
 displayDayNames();
