@@ -24,6 +24,11 @@
 	<script>
 		const canvas = document.querySelector('.drawing');
 
+		dragTimer = null;
+
+		let firstPosition, finalPosition,drag = false;
+		first = {x:95.8125, y: 214},final= {x: 94.8125, y: 213};
+		//fillCanvas(first,final);
 		document.querySelector('.clear-canvas').addEventListener('click',()=>{
 				const context = canvas.getContext('2d');
 				context.clearRect(0, 0, canvas.width, canvas.height);
@@ -36,29 +41,38 @@
 			return {x:x,y:y};
 		}
 
+		// (x,y,width,height)
 		function fillCanvas(first,final) {
-			padd = 10;
+			clearTimeout(dragTimer);
+			padd = 0;
 			let right = canvas.getBoundingClientRect().right;
 			var ctx = canvas.getContext("2d");
 			if( first.y < final.y){
-				ctx.rect(0,first.y,right - padd,final.y);
+				ctx.rect(0,first.y,right - padd,final.y - first.y);
+				console.log('normal')
+				console.log(first,final);
 			}
 			else if( first.y > final.y){
-				ctx.rect(0,final.y,right - padd,first.y);
+				ctx.rect(0,final.y,right - padd,first.y-final.y);
+				console.log('final first')
+				console.log(first,final);
 			}
 			ctx.fill();
-			console.log(firstPosition);
+			dragTimer = setTimeout(function(){
+				
+				console.log('drag timer')
+				drag = false;
+			
+			},500);
 			finalPosition = null;
 
 
 		}
 
-		let firstPosition, finalPosition,drag = false;
 
 		canvas.addEventListener('mousedown',(ev) =>{
 			drag = true;
 			firstPosition = getCursorPosition(canvas,ev);
-			console.log('mousedown',firstPosition);
 		});
 
 		canvas.addEventListener('mouseup',(ev) =>{
