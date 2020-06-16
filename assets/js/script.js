@@ -62,7 +62,7 @@ function calendarControls(){
 function populateCalendar(){
 	resetCaneldar();
 	totalDays = new Date(currentYear,(currentMonth.id + 1),0).getDate();
-	today = new Date().getDay();
+	today = new Date().getDate();
 	calendarDays = document.querySelectorAll('.week.dates>.day>p');
 	startDay = new Date(currentYear,(currentMonth.id)).getDay();
 	for(let i = 0; i < totalDays;i++){
